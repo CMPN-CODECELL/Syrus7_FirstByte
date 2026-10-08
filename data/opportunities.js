@@ -1,0 +1,80 @@
+export const initialOpportunities = [
+  {
+    id: "opp-1",
+    title: "Software Engineering Intern (Frontend & Systems)",
+    organization: "Nexus Labs (Campus Incubation)",
+    type: "internship",
+    deadline: "Oct 25, 2026",
+    description: "Looking for 2nd and 3rd year engineering students proficient in modern web standards, JavaScript, component state management, and REST APIs. You will work directly with our engineering team on real-time collaboration tools.",
+    eligibility: "B.Tech 2nd/3rd Year (CS/IT/ECE), Strong JS fundamentals",
+    compensation: "₹25,000 / month",
+    location: "Hybrid (Campus Tech Park)",
+    saved: false,
+    applied: false
+  },
+  {
+    id: "opp-2",
+    title: "Undergraduate Research Assistant: Efficient ML Models",
+    organization: "Campus AI & Computer Vision Lab",
+    type: "research",
+    deadline: "Nov 02, 2026",
+    description: "Work with Prof. Dr. Ramanathan on quantization, pruning, and low-rank adaptation (LoRA) for compact language models running on edge devices. Opportunity for co-authorship on top-tier conference submissions.",
+    eligibility: "All years with solid Linear Algebra, PyTorch & Python knowledge",
+    compensation: "₹15,000 / month + Conference Travel Grant",
+    location: "On-Campus (CS Research Wing)",
+    saved: false,
+    applied: false
+  },
+  {
+    id: "opp-3",
+    title: "Syrus 7.0 Innovation Challenge — PS-04 Track",
+    organization: "Syrus Hackathon Committee & FirstByte",
+    type: "hackathon",
+    deadline: "Oct 16, 2026",
+    description: "Build high-impact solutions for student campus ecosystems (Problem Statement 04). Top projects receive seed incubation support, cloud credits, and direct interview fast-tracks with industry sponsors.",
+    eligibility: "Undergraduate & Graduate teams of 2 to 4 members",
+    compensation: "₹1,50,000 Prize Pool + Mentorship",
+    location: "Campus Innovation Arena",
+    saved: false,
+    applied: false
+  },
+  {
+    id: "opp-4",
+    title: "Google Summer of Code (GSoC) 2027 Campus Cohort",
+    organization: "Open Source Campus Mentorship Club",
+    type: "competition",
+    deadline: "Nov 15, 2026",
+    description: "Structured 8-week bootcamp preparing students for GSoC proposals, git workflows, open source issue triage, and mentoring from past GSoC alumni across Apache, Linux Foundation, and Python organizations.",
+    eligibility: "Open to all branches and academic years",
+    compensation: "Community Mentorship + Free Certification",
+    location: "Remote / Campus Meetups",
+    saved: false,
+    applied: false
+  },
+  {
+    id: "opp-5",
+    title: "Women in Engineering & Tech Excellence Fellowship 2026-27",
+    organization: "Campus Alumni Endowment Fund",
+    type: "scholarship",
+    deadline: "Oct 30, 2026",
+    description: "Merit-cum-need based scholarship providing full annual tuition coverage, mentorship from senior tech leaders, and sponsored laptops/workstations for deserving female undergraduate engineers.",
+    eligibility: "Female students enrolled in 1st, 2nd, or 3rd year engineering with GPA >= 7.5",
+    compensation: "Full Tuition Fee Waiver + ₹30,000 Tech Grant",
+    location: "Campus Dean of Student Welfare Office",
+    saved: false,
+    applied: false
+  },
+  {
+    id: "opp-6",
+    title: "Product Design & UX Apprenticeship",
+    organization: "Starlight Digital Studio",
+    type: "internship",
+    deadline: "Nov 05, 2026",
+    description: "Join an active design team building mobile apps and design systems. Work on user research interviews, wireframing, interactive prototyping in Figma, and usability test synthesis.",
+    eligibility: "Any undergraduate with a portfolio or Figma case studies",
+    compensation: "₹20,000 / month",
+    location: "Remote",
+    saved: false,
+    applied: false
+  }
+];

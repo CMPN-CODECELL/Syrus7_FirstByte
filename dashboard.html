@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard — CampusOS</title>
+    <meta name="description" content="Manage your campus connections, academic resources, and upcoming events on CampusOS." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="dashboard" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Welcome Header -->
+      <div class="mb-8 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span id="dashboard-greeting" class="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wider block mb-1">
+            Welcome back,
+          </span>
+          <h1 id="dashboard-student-name" class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Student 👋
+          </h1>
+          <p id="dashboard-user-branch" class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Computer Engineering · 2nd Year · Campus Institute of Technology
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="profile.html" class="px-3.5 py-2 text-xs font-semibold rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors">
+            Edit Profile
+          </a>
+          <a href="feed.html" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-colors">
+            + Post to Campus
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Action Shortcuts -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+        <a href="students.html" class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-blue-500 dark:hover:border-blue-500 transition-all text-center group shadow-2xs">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white block">Find Students</span>
+          <span class="text-[10px] text-slate-400">Discover peers</span>
+        </a>
+
+        <a href="learn.html" class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all text-center group shadow-2xs">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white block">Share Resource</span>
+          <span class="text-[10px] text-slate-400">Notes & PYQs</span>
+        </a>
+
+        <a href="exchange.html" class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-amber-500 dark:hover:border-amber-500 transition-all text-center group shadow-2xs">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          </div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white block">Exchange</span>
+          <span class="text-[10px] text-slate-400">Trade equipment</span>
+        </a>
+
+        <a href="skills.html" class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-purple-500 dark:hover:border-purple-500 transition-all text-center group shadow-2xs">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white block">Skill Swap</span>
+          <span class="text-[10px] text-slate-400">Peer mentoring</span>
+        </a>
+
+        <a href="opportunities.html" class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-rose-500 dark:hover:border-rose-500 transition-all text-center group shadow-2xs col-span-2 sm:col-span-1">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <span class="text-xs font-bold text-slate-900 dark:text-white block">Opportunities</span>
+          <span class="text-[10px] text-slate-400">Jobs & Grants</span>
+        </a>
+      </div>
+
+      <!-- Live Campus Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Active Peers</span>
+          <div id="stat-peers" class="text-2xl font-black text-slate-900 dark:text-white tabular-nums">0</div>
+        </div>
+        <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Academic Notes</span>
+          <div id="stat-resources" class="text-2xl font-black text-slate-900 dark:text-white tabular-nums">0</div>
+        </div>
+        <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Upcoming Events</span>
+          <div id="stat-events" class="text-2xl font-black text-slate-900 dark:text-white tabular-nums">0</div>
+        </div>
+        <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-1">Open Opportunities</span>
+          <div id="stat-opps" class="text-2xl font-black text-slate-900 dark:text-white tabular-nums">0</div>
+        </div>
+      </div>
+
+      <!-- Two-Column Layout: Left Feed, Right Widgets -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Column: Campus Activity Feed (8 cols) -->
+        <div class="lg:col-span-8 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+              Campus Activity Feed
+            </h2>
+            <a href="feed.html" class="text-xs text-blue-600 dark:text-blue-400 hover:underline">
+              View All Posts →
+            </a>
+          </div>
+
+          <div id="dashboard-feed-container" class="space-y-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Right Column: Event Spotlight & Recommended Peers (4 cols) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Event Spotlight -->
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Upcoming Event Spotlight</h3>
+            <div id="dashboard-event-spotlight">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Recommended Study Peers -->
+          <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+                Study Peers to Connect
+              </h3>
+              <a href="students.html" class="text-[11px] text-blue-600 dark:text-blue-400 hover:underline">
+                Explore All
+              </a>
+            </div>
+            
+            <div id="dashboard-peer-list" class="space-y-2.5">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initDashboard } from './js/dashboard.js';
+      initDashboard();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Opportunities — Internships & Grants | CampusOS</title>
+    <meta name="description" content="Explore verified tech internships, research assistantships, hackathons, and scholarships curated for college students." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="opportunities" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Page Header -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Career & Growth</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+            Opportunities
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
+            Verified campus internships, research lab assistantships, hackathon competitions, and academic scholarships.
+          </p>
+        </div>
+        <div id="opp-count-badge" class="text-xs font-semibold text-slate-500 dark:text-slate-400 tabular-nums">
+          Loading opportunities...
+        </div>
+      </div>
+
+      <!-- Filters Toolbar -->
+      <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mb-8 shadow-2xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          
+          <!-- Search -->
+          <div class="lg:col-span-2">
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Search Roles & Organizations</label>
+            <div class="relative">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input id="opp-search" type="text" placeholder="Search internships, Nexus Labs, research lab, scholarships..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+          </div>
+
+          <!-- Type Filter & Reset -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400">Opportunity Type</label>
+              <button id="opp-reset-btn" class="text-[10px] text-blue-600 dark:text-blue-400 hover:underline">Reset</button>
+            </div>
+            <select id="opp-type-filter" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="all">All Opportunities</option>
+              <option value="internship">Internships</option>
+              <option value="research">Research Assistantships</option>
+              <option value="hackathon">Hackathon Challenges</option>
+              <option value="scholarship">Scholarships & Grants</option>
+              <option value="competition">Bootcamps & Cohorts</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Opportunities Grid -->
+      <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injected via js/opportunities.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="opp-empty-state" class="hidden text-center py-20 p-8 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900">
+        <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white">No opportunities found matching your criteria</h3>
+        <p class="text-xs text-slate-400 mt-1">Try resetting the filter or check back later.</p>
+      </div>
+
+      <!-- Opportunity Details Modal -->
+      <div id="opp-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div id="opp-modal-content" class="relative w-full max-w-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Apply Modal -->
+      <div id="apply-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div id="apply-modal-content" class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initOpportunitiesPage } from './js/opportunities.js';
+      initOpportunitiesPage();
+    </script>
+  </body>
+</html>

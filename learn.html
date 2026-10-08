@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn — Academic Resource Repository | CampusOS</title>
+    <meta name="description" content="Access peer-shared notes, solved previous year question papers, cheatsheets, and coding boilerplates." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="learn" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Page Header -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Academic Repository</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+            Learn & Exam Resources
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
+            Verified study guides, solved university question papers, cheatsheets, and practical manuals shared by seniors and top performers.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="resources-count-badge" class="text-xs font-semibold text-slate-500 dark:text-slate-400 tabular-nums">
+            Loading resources...
+          </span>
+          <button id="open-upload-modal-btn" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            + Upload Resource
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters & Sorting Bar -->
+      <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mb-8 shadow-2xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          
+          <!-- Search -->
+          <div class="lg:col-span-2">
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Search Resources & Subjects</label>
+            <div class="relative">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input id="resource-search" type="text" placeholder="Search by subject (e.g. Operating Systems, DSA, DBMS)..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Resource Category</label>
+            <select id="resource-category-filter" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="all">All Categories</option>
+              <option value="notes">Handwritten & Typed Notes</option>
+              <option value="pyq">Solved Previous Papers (PYQs)</option>
+              <option value="cheatsheet">Cheatsheets & Formula Sheets</option>
+              <option value="code">Code Boilerplates & Labs</option>
+              <option value="guide">Study Guides & Textbooks</option>
+            </select>
+          </div>
+
+          <!-- Sort & Reset -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400">Sort By</label>
+              <button id="resource-reset-btn" class="text-[10px] text-blue-600 dark:text-blue-400 hover:underline">Reset</button>
+            </div>
+            <select id="resource-sort-filter" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="popular">Most Downloaded</option>
+              <option value="upvoted">Highest Upvoted</option>
+              <option value="recent">Recently Added</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Resources Grid -->
+      <div id="resources-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injected via js/learn.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="resources-empty-state" class="hidden text-center py-20 p-8 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900">
+        <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white">No resources matched your query</h3>
+        <p class="text-xs text-slate-400 mt-1">Try another subject name or upload the first set of notes!</p>
+      </div>
+
+      <!-- View/Download Modal -->
+      <div id="resource-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div id="resource-modal-content" class="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Upload Resource Modal -->
+      <div id="upload-resource-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white">Upload Academic Material</h2>
+              <p class="text-xs text-slate-500">Contribute your exam notes or solutions to help your peers.</p>
+            </div>
+            <button id="upload-modal-close-btn" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <form id="upload-resource-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Resource Title *</label>
+              <input id="upload-title" type="text" placeholder="e.g. Computer Graphics Midterm Solved Papers" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Subject & Course Code *</label>
+              <input id="upload-subject" type="text" placeholder="e.g. Computer Graphics (CS-304)" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                <select id="upload-category" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  <option value="notes">Notes</option>
+                  <option value="pyq">Solved PYQ</option>
+                  <option value="cheatsheet">Cheatsheet</option>
+                  <option value="code">Code / Lab</option>
+                  <option value="guide">Guide</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Format Type</label>
+                <select id="upload-type" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  <option value="PDF">PDF Document</option>
+                  <option value="ZIP">ZIP Archive</option>
+                  <option value="CODE">Source Code</option>
+                  <option value="NOTES">Markdown Notes</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Description *</label>
+              <textarea id="upload-description" rows="2" placeholder="Brief outline of topics and key formulas covered..." required class="w-full p-3 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Sample Notes / Content Preview</label>
+              <textarea id="upload-notes-preview" rows="3" placeholder="Paste a snippet or markdown notes summary here..." class="w-full p-3 font-mono text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-2">
+              <button type="submit" class="px-5 py-2 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm">
+                Publish to Campus Repository
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initLearnPage } from './js/learn.js';
+      initLearnPage();
+    </script>
+  </body>
+</html>

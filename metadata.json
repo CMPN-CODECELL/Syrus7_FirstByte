@@ -1,0 +1,6 @@
+{
+  "name": "CampusOS",
+  "description": "CampusOS - Connect. Learn. Exchange. Grow. A comprehensive student-centric campus ecosystem for peer learning, academic resource sharing, student networking, skill exchange, and campus opportunities built by Team FirstByte for Syrus 7.0 (PS-04).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

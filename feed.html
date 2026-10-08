@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Feed — Discussions & Updates | CampusOS</title>
+    <meta name="description" content="Engage in meaningful campus discussions, ask questions, share project updates, and celebrate student achievements." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="feed" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      
+      <!-- Page Header -->
+      <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Student Community</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+            Campus Feed
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Constructive campus discussions, questions, study group meetups, and project showcases.
+          </p>
+        </div>
+        <button id="open-create-post-btn" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm flex items-center gap-1.5 self-start sm:self-auto">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+          + Create Post
+        </button>
+      </div>
+
+      <!-- Feed Category Filter Tabs -->
+      <div class="flex items-center gap-1.5 overflow-x-auto pb-3 mb-6 text-xs font-medium no-scrollbar">
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-blue-600 text-white shrink-0 transition-colors" data-type="all">
+          All Posts
+        </button>
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 shrink-0 transition-colors" data-type="discussion">
+          Discussions
+        </button>
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 shrink-0 transition-colors" data-type="question">
+          Questions
+        </button>
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 shrink-0 transition-colors" data-type="resource">
+          Resources
+        </button>
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 shrink-0 transition-colors" data-type="opportunity">
+          Opportunities
+        </button>
+        <button class="feed-filter-tab px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 shrink-0 transition-colors" data-type="achievement">
+          Achievements
+        </button>
+      </div>
+
+      <!-- Feed Posts Container -->
+      <div id="feed-posts-container">
+        <!-- Injected via js/feed.js -->
+      </div>
+
+      <!-- Create Post Modal -->
+      <div id="create-post-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white">Share a Post on Campus Feed</h2>
+              <p class="text-xs text-slate-500">Spark a discussion, ask for study help, or announce a milestone.</p>
+            </div>
+            <button id="create-post-close-btn" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <form id="create-post-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Post Type</label>
+              <select id="post-form-type" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                <option value="Discussion">Discussion</option>
+                <option value="Question">Academic Question</option>
+                <option value="Resource">Resource Share</option>
+                <option value="Opportunity">Opportunity / Team Call</option>
+                <option value="Event">Event Notice</option>
+                <option value="Achievement">Student Achievement</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Content *</label>
+              <textarea id="post-form-content" rows="4" placeholder="What would you like to discuss or share with campus peers?" required class="w-full p-3 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Tags (comma separated)</label>
+              <input id="post-form-tags" type="text" placeholder="e.g. Syrus7, Algorithms, LibraryStudy, WebDev" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-2">
+              <button type="submit" class="px-5 py-2 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm">
+                Publish Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initFeedPage } from './js/feed.js';
+      initFeedPage();
+    </script>
+  </body>
+</html>

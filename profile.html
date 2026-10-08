@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile — CampusOS</title>
+    <meta name="description" content="View and manage your student profile, shared academic resources, registered events, and campus network." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="profile" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
+      
+      <!-- Profile Card Banner & Info -->
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden shadow-sm mb-8">
+        
+        <!-- Subtle Top Banner Accent -->
+        <div class="h-28 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-500"></div>
+
+        <div class="px-6 pb-6 pt-0 relative">
+          <!-- Avatar + Edit Button Row -->
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 -mt-10 mb-4">
+            <div id="profile-avatar-slot" class="ring-4 ring-white dark:ring-slate-900 rounded-full w-20 h-20 shadow-md">
+              <!-- Avatar injected via js/profile.js -->
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button id="open-edit-profile-btn" class="px-4 py-2 text-xs font-semibold rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 transition-colors shadow-2xs">
+                ✎ Edit Profile Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Basic Info -->
+          <div class="space-y-1 mb-5">
+            <h1 id="profile-name" class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              Aarav Sharma
+            </h1>
+            <p id="profile-meta" class="text-xs font-semibold text-blue-600 dark:text-blue-400">
+              Computer Engineering · 2nd Year
+            </p>
+            <p id="profile-college" class="text-xs text-slate-500">
+              Campus Institute of Technology
+            </p>
+          </div>
+
+          <!-- Bio -->
+          <p id="profile-bio" class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-w-2xl mb-6">
+            Passionate about full-stack development, Python systems, and AI/ML experiments. Building open-source developer tooling and hackathon projects.
+          </p>
+
+          <!-- Metrics Counter Row -->
+          <div class="grid grid-cols-3 gap-3 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800 mb-6 text-center max-w-xl">
+            <div>
+              <span id="count-resources-shared" class="block text-xl font-extrabold text-slate-900 dark:text-white tabular-nums">0</span>
+              <span class="text-[11px] text-slate-500 uppercase font-medium">Resources Shared</span>
+            </div>
+            <div>
+              <span id="count-events-joined" class="block text-xl font-extrabold text-slate-900 dark:text-white tabular-nums">0</span>
+              <span class="text-[11px] text-slate-500 uppercase font-medium">Events Registered</span>
+            </div>
+            <div>
+              <span id="count-network-connections" class="block text-xl font-extrabold text-slate-900 dark:text-white tabular-nums">0</span>
+              <span class="text-[11px] text-slate-500 uppercase font-medium">Active Connections</span>
+            </div>
+          </div>
+
+          <!-- Skills and Interests -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Technical Skills</h3>
+              <div id="profile-skills-list" class="flex flex-wrap gap-1.5">
+                <!-- Injected -->
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Interests & Hobbies</h3>
+              <div id="profile-interests-list" class="flex flex-wrap gap-1.5">
+                <!-- Injected -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Profile Tabs Section -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-6 border-b border-slate-200 dark:border-slate-800 text-xs font-semibold">
+          <button class="profile-tab-btn pb-3 border-b-2 border-blue-600 text-blue-600 transition-colors" data-tab="resources">
+            My Uploaded Resources
+          </button>
+          <button class="profile-tab-btn pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" data-tab="events">
+            My Registered Events
+          </button>
+          <button class="profile-tab-btn pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors" data-tab="connections">
+            My Campus Network
+          </button>
+        </div>
+
+        <div id="profile-tab-content" class="min-h-[200px] pt-2">
+          <!-- Injected via js/profile.js -->
+        </div>
+      </div>
+
+      <!-- Edit Profile Modal -->
+      <div id="edit-profile-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white">Edit Student Profile</h2>
+              <p class="text-xs text-slate-500">Update your public campus credentials and bio.</p>
+            </div>
+            <button id="edit-profile-close-btn" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <form id="edit-profile-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Name</label>
+              <input id="edit-name" type="text" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Branch / Course</label>
+                <input id="edit-branch" type="text" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Year</label>
+                <input id="edit-year" type="text" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">College Name</label>
+              <input id="edit-college" type="text" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Bio</label>
+              <textarea id="edit-bio" rows="3" class="w-full p-3 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Skills (comma separated)</label>
+              <input id="edit-skills" type="text" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Interests (comma separated)</label>
+              <input id="edit-interests" type="text" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-2">
+              <button type="submit" class="px-5 py-2 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm">
+                Save Profile Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initProfilePage } from './js/profile.js';
+      initProfilePage();
+    </script>
+  </body>
+</html>

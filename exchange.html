@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Exchange — Student Marketplace | CampusOS</title>
+    <meta name="description" content="Buy, sell, swap, and donate textbooks, calculators, lab equipment, and project components within your campus." />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body data-page="exchange" class="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation -->
+    <div id="navbar-container"></div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      
+      <!-- Page Header -->
+      <div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Student Marketplace</span>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-1">
+            Campus Exchange
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-xl">
+            Pass forward textbooks, scientific calculators, Arduino kits, and drawing equipment directly to batchmates.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="listings-count-badge" class="text-xs font-semibold text-slate-500 dark:text-slate-400 tabular-nums">
+            Loading listings...
+          </span>
+          <button id="open-create-listing-btn" class="px-4 py-2 text-xs font-semibold rounded-xl bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm flex items-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            + Create Listing
+          </button>
+        </div>
+      </div>
+
+      <!-- Filters Toolbar -->
+      <div class="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mb-8 shadow-2xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          
+          <!-- Search -->
+          <div class="lg:col-span-2">
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Search Items</label>
+            <div class="relative">
+              <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              <input id="exchange-search" type="text" placeholder="Search calculators, CLRS textbooks, Arduino kits..." class="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+          </div>
+
+          <!-- Category -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Category</label>
+            <select id="exchange-category-filter" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="all">All Categories</option>
+              <option value="textbooks">Textbooks</option>
+              <option value="electronics">Calculators & Electronics</option>
+              <option value="components">Sensors & Hardware Components</option>
+              <option value="lab-gear">Lab Coats & Equipment</option>
+              <option value="stationery">Drafting Tools & Stationery</option>
+            </select>
+          </div>
+
+          <!-- Deal Type & Reset -->
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-bold text-slate-600 dark:text-slate-400">Deal Type</label>
+              <button id="exchange-reset-btn" class="text-[10px] text-blue-600 dark:text-blue-400 hover:underline">Reset</button>
+            </div>
+            <select id="exchange-deal-filter" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+              <option value="all">All Deals</option>
+              <option value="For Sale">For Sale</option>
+              <option value="Exchange">Direct Exchange / Swap</option>
+              <option value="Free / Give Away">Free / Giveaway</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Listings Grid -->
+      <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Injected via js/exchange.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="listings-empty-state" class="hidden text-center py-20 p-8 border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900">
+        <svg class="w-12 h-12 mx-auto text-slate-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white">No items found matching your filters</h3>
+        <p class="text-xs text-slate-400 mt-1">Try another keyword or create the first listing for this category!</p>
+      </div>
+
+      <!-- Contact Owner Modal -->
+      <div id="contact-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div id="contact-modal-content" class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Create Listing Modal -->
+      <div id="create-listing-modal" class="hidden fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20 modal-backdrop bg-slate-900/60 flex justify-center items-start">
+        <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-slide-down p-6">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-base font-bold text-slate-900 dark:text-white">List an Item for Exchange</h2>
+              <p class="text-xs text-slate-500">Connect with students across hostel blocks and academic halls.</p>
+            </div>
+            <button id="create-listing-close-btn" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-white rounded-lg">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+
+          <form id="create-listing-form" class="space-y-3.5">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Item Title *</label>
+              <input id="listing-title" type="text" placeholder="e.g., Casio FX-991CW Calculator" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+            </div>
+
+            <div class="grid grid-cols-3 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Category</label>
+                <select id="listing-category" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  <option value="textbooks">Textbook</option>
+                  <option value="electronics">Electronics</option>
+                  <option value="components">Hardware Component</option>
+                  <option value="lab-gear">Lab Gear</option>
+                  <option value="stationery">Stationery</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Condition</label>
+                <select id="listing-condition" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  <option value="Like New">Like New</option>
+                  <option value="Gently Used">Gently Used</option>
+                  <option value="Good">Good</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Deal Type</label>
+                <select id="listing-deal-type" class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500">
+                  <option value="For Sale">For Sale</option>
+                  <option value="Exchange">Exchange</option>
+                  <option value="Free / Give Away">Free</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Price / Exchange Terms *</label>
+                <input id="listing-price" type="text" placeholder="e.g. ₹500 or Swap for Math Book" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Campus Meetup Location *</label>
+                <input id="listing-location" type="text" placeholder="e.g. Hostel 3 / Central Library" required class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Description & Notes *</label>
+              <textarea id="listing-description" rows="3" placeholder="Condition details, included accessories, or reasons for exchange..." required class="w-full p-3 text-xs rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end gap-2">
+              <button type="submit" class="px-5 py-2 text-xs font-bold rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors shadow-sm">
+                Publish Marketplace Listing
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <script type="module">
+      import './js/app.js';
+      import { initExchangePage } from './js/exchange.js';
+      initExchangePage();
+    </script>
+  </body>
+</html>
